@@ -17,6 +17,34 @@
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style type="text/css">
+    .arrow{
+      float: right;
+    }
+    .col-xs-8{
+      text-align: left;
+    }
+    .col-xs-4{
+      text-align: center;
+      color: black;
+
+    }
+    .row{
+      padding:10px;
+    }
+    .box{   
+      border-bottom: 4px solid #dddddd;
+    }
+    .disp{
+      color: #7d7d7d;
+    }
+    #price,#amount{
+      color: red;
+    }
+    #epay{
+     margin:50px auto;
+    }
+    </style>
   </head>
   <body>
  
@@ -28,7 +56,7 @@
     <script type="text/javascript">
       var goodsid;
       var goodsamount;
-        var goodsData=[{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg","mycimgsrc":"goodspage/07.jpg","price":"￥168","weight":"3600g","per":"16枚*80#"},{"mainimgsrc":"24_75.jpg","mycimgsrc":"goodspage/08.jpg","price":"￥158","weight":"5000g","per":"24枚*75#"}];
+        var goodsData=[{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg","mycimgsrc":"goodspage/07.jpg","price":"￥168","weight":"3600g","per":"16枚*80#","category":"16枚*80#经济礼盒装"},{"mainimgsrc":"24_75.jpg","mycimgsrc":"goodspage/08.jpg","price":"￥158","weight":"5000g","per":"24枚*75#","category":"24枚*75#经济礼盒装"}];
           function getUrlParam(name){
             var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
             var r=window.location.search.substr(1).match(reg);
@@ -41,10 +69,89 @@
         $(document).ready(function(){
             goodsid=getUrlParam("id");
             goodsamount=getUrlParam("amount");            
-
+            var gooddt=goodsData[goodsid-1];
+            var str=new Array();
+            var str=gooddt.price.split("￥");
+            str=parseInt(str[1]);
+            goodsamount=parseInt(goodsamount);
+            var total=str*goodsamount;
+            $("#price").text(total+"元");
+            $("#category").text(gooddt.category);
+            $("#amount").text(goodsamount);
         })
     </script>
 
+
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>收货地址：</b></div>
+        <div class="col-xs-8"><span id="address"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="box">    
+      <div class="row" onclick="showContainer()">
+        <div class="col-xs-4"><b>配送时间：</b></div>
+        <div class="col-xs-8"><span id="time" class="disp"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true">
+        </div>
+     </div>
+    
+
+      <div class="container-fluid" style="display: none">
+        <div class="radio"><label class="option">
+          <input type="radio" name="timeRadios" id="weekendAndDay" value="weekendAndDay" onclick="hideContainer()">
+          <small>工作日及周末</small>
+        </label>
+      </div>
+        <div class="radio">
+          <label class="option">
+          <input type="radio" name="timeRadios" id="day" value="day" onclick="hideContainer()">
+          <small>仅工作日</small>
+        </label>
+      </div>
+        <div class="radio">
+          <label class="option">
+          <input type="radio" name="timeRadios" id="weekend" value="weekend" onclick="hideContainer()">
+          <small>仅周末</small>
+        </label>
+      </div>
+      </div>
+    </div>
+
+     <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>商品详情：</b></div>
+        <div class="col-xs-8"><span id="product">商品总金额：<span id="price"></span></span>
+          <br/>
+          <span id="category"></span>*<span id="amount"></span>盒
+        </div>
+      </div>
+    </div>
+    <div class="container text-center">
+
+        <a onclick="" class="btn btn-danger"id="epay">微信支付</a>
+    </div>
+
+
+<script type="text/javascript">
+  var expresstime;
+  function hideContainer(){
+    var expresstime= $('input:radio[name="timeRadios"]:checked').val();
+    $(".container-fluid").hide();
+    if(expresstime=="weekendAndDay"){
+      expresstime="工作日及周末"
+    }else if(expresstime=="day"){
+      expresstime="仅工作日"
+    }else if(expresstime=="weekend"){
+      expresstime="仅周末"
+    }
+    $("#time").text(expresstime);
+    
+  }
+  function showContainer(){
+    $(".container-fluid").show(1000);
+  }
+</script>
 
 
 
