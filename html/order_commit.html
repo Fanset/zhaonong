@@ -25,6 +25,28 @@
     <script src="../js/jquery-1.11.2.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      var goodsid;
+      var goodsamount;
+        var goodsData=[{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg","mycimgsrc":"goodspage/07.jpg","price":"￥168","weight":"3600g","per":"16枚*80#"},{"mainimgsrc":"24_75.jpg","mycimgsrc":"goodspage/08.jpg","price":"￥158","weight":"5000g","per":"24枚*75#"}];
+          function getUrlParam(name){
+            var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+            var r=window.location.search.substr(1).match(reg);
+            if(r!=null){
+              return unescape(r[2]);
+            }
+            return null;
+          }
+
+        $(document).ready(function(){
+            goodsid=getUrlParam("id");
+            goodsamount=getUrlParam("amount");            
+
+        })
+    </script>
+
+
+
 
   </body>
 </html>

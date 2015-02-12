@@ -25,21 +25,47 @@
         <script src="../js/jquery-1.11.2.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+        var goodsid;
+        var goodsData=[{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg","mycimgsrc":"goodspage/07.jpg","price":"￥168","weight":"3600g","per":"16枚*80#"},{"mainimgsrc":"24_75.jpg","mycimgsrc":"goodspage/08.jpg","price":"￥158","weight":"5000g","per":"24枚*75#"}];
+          function getUrlParam(name){
+            var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+            var r=window.location.search.substr(1).match(reg);
+            if(r!=null){
+              return unescape(r[2]);
+            }
+            return null;
+          }
+        $(document).ready(function(){
+
+          goodsid=getUrlParam("id");
+          var gooddt=goodsData[goodsid-1]
+          var imgsrc="../image/"+gooddt.mainimgsrc;
+          $("#mainimg").attr("src",imgsrc);
+          $("#category").text(gooddt.per);
+          $("#price").text(gooddt.price);
+
+        })
+
+
+        </script>
+
         <div class="title_img">
-          <img src="../image/16_80/1.jpg" id="goods" class="img-responsive" alt="Responsive image">
+          <img id="mainimg"id="goods" class="img-responsive" alt="Responsive image">
         </div>
         <div class="container-fluid">
-          <h4>延安洛川沼肥苹果 红富士 <small id="category">80#16枚经济礼盒装</small></h4>
-          <p><strong id="price">68</strong>元/盒</p> 
+          <h4>延安洛川沼肥苹果 红富士 <small id="category"></small></h4>
+          <p><strong id="price"></strong>/盒</p> 
           <hr style="border-top:dotted 1px #dddddd"/>
 
           <form>
             <div class="row form-group">
               <div class="col-xs-4"><label for="amount">购买数量:</label></div>
               <div class="col-xs-8 ">
-                <input type="button" class="btn btn-default" onclick="plusUp()" value="+">
+                <input type="button" class="btn btn-default btn-xs" onclick="plusUp()" value="+">
                 <input type="number" id="amount" value="1" onkeyup='this.value=this.value.replace(/\D/gi,"")' style="width:25%">
-                <input type="button" class="btn btn-default" onclick="minusDown()" value="-">
+                <input type="button" class="btn btn-default btn-xs" onclick="minusDown()" value="-">
               </div>
             </div><hr>
             <div class="text-center">
@@ -67,10 +93,10 @@
             $("#amount").val(num);
           }
         }
-          function submitNum(){
-            var amount=$("#amount").val();
-            location.href="order_commit.html?amount="+amount;
-          }
+        function submitNum(){
+          var amount=$("#amount").val();
+          location.href="order_commit.html?id="+goodsid+"&amount="+amount;
+        }
         </script>
       </body>
       </html>
