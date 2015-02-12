@@ -32,20 +32,47 @@
           <h4>延安洛川沼肥苹果 红富士 <small>80#16枚装</small></h4>
           <p><strong>68</strong>元/盒</p> 
           <hr style="border-top:dotted 1px #dddddd"/>
-        
-        <form>
-          <div class="row form-group">
-            <div class="col-xs-4"><label for="amount">购买数量:</label></div>
-            <div class="col-xs-8 ">
-              <input type="button" class="btn btn-default" onclick="" value="+">
-              <input type="number" class="add" value="1" style="width:30%">
-              <input type="button" class="btn btn-default" onclick="" value="-">
+
+          <form>
+            <div class="row form-group">
+              <div class="col-xs-4"><label for="amount">购买数量:</label></div>
+              <div class="col-xs-8 ">
+                <input type="button" class="btn btn-default" onclick="plusUp()" value="+">
+                <input type="number" id="amount" value="1" onkeyup='this.value=this.value.replace(/\D/gi,"")' style="width:30%">
+                <input type="button" class="btn btn-default" onclick="minusDown()" value="-">
+              </div>
+            </div><hr>
+            <div class="text-center">
+              <a class="btn btn-danger" onclick="submitNum()">立即下单</a>
             </div>
-         </div><hr>
-         <div class="text-center">
-          <button type="submit" class="btn btn-danger">立即下单</button>
+          </form>
         </div>
-         </form>
-      </div>
+        <script type="text/javascript">
+        function plusUp(){
+          var num=$("#amount").val();
+          num=parseInt(num)+1;
+          if(num<=0){
+
+          }else{
+            $("#amount").val(num);
+          }
+          console.log(document.getElementById("amount"));
+        }
+        function minusDown(){
+          var num=$("#amount").val();
+          num=parseInt(num)-1;
+          if(num<=0){
+
+          }else{
+            $("#amount").val(num);
+          }
+        }
+          function submitNum(){
+            var amount=$("#amount").val();
+            location.href="order_commit.html?amount="+amount;
+          }
+          
+
+        </script>
       </body>
       </html>
