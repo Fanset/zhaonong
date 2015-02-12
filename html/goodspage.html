@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,13 +34,26 @@
         </style>
       </head>
       <body>
-       
+
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="../js/jquery-1.11.2.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
-
+        <script type="text/javascript">
+          $(document).ready(function(){
+            function getUrlParam(name){
+              var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+              var r=window.location.search.substr(1).match(reg);
+              if(r!=null){
+                return unescape(r[2]);
+              }
+              return null;
+            }
+            var goodsid=getUrlParam("id");
+            console.log(goodsid);
+          })
+        </script>
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
@@ -55,7 +68,7 @@
             <div class="active item">
               <img src="../image/16_80/1.jpg" alt="First slide" class="img-responsive" >
               <div class="container">
-                
+
               </div>
             </div>
             <div class="item">
@@ -66,19 +79,19 @@
             <div class="item">
               <img src="../image/16_80/3.jpg" alt="Third slide" class="img-responsive">
               <div class="container">
-                
+
               </div>
             </div>
             <div class="item">
               <img src="../image/16_80/4.jpg" alt="Fourth slide" class="img-responsive">
               <div class="container">
-                
+
               </div>
             </div>
             <div class="item">
               <img src="../image/16_80/5.jpg" alt="Fifth slide" class="img-responsive">
               <div class="container">
-                
+
               </div>
             </div>
           </div>
@@ -94,9 +107,9 @@
       </div><!-- /.carousel -->
       <div class="container-fluid">
         <div class="page-header">
-          <h3>延安洛川红富士 嘎啦 沼肥苹果 红富士 <small>16枚装</small></h3>
-          <h4 id="price">￥168</h4>
-          
+          <h3>延安洛川红富士 嘎啦 沼肥苹果 红富士 <small class="per">16枚装</small></h3>
+          <h4 class="price">￥168</h4>
+
         </div>
         <div class="row">
           <div class="col-xs-6">产地：延安</div>
@@ -104,11 +117,11 @@
         </div>
         <div class="row">
           <div class="col-xs-6">发货：西安</div>
-          <div class="col-xs-6">规格：16枚装</div>
+          <div class="col-xs-6" >规格：<span class="per">16枚装</span></div>
         </div>
         <div class="row">
           <div class="col-xs-6">快递：免运费</div>
-          <div class="col-xs-6">净重：3600g</div>
+          <div class="col-xs-6">净重：<span class="weight">3600g</span></div>
         </div>
       </div>
       <br />
@@ -119,7 +132,7 @@
 
       <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container text-right">
-          <a href="16_80orderpage.html" class="btn btn-danger navbar-btn ">立即购买</a>
+          <a href="orderpage.html" class="btn btn-danger navbar-btn ">立即购买</a>
         </div>
       </form>
     </div>

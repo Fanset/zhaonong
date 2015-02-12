@@ -26,11 +26,11 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
         <div class="title_img">
-          <img src="../image/16_80/1.jpg" class="img-responsive" alt="Responsive image">
+          <img src="../image/16_80/1.jpg" id="goods" class="img-responsive" alt="Responsive image">
         </div>
         <div class="container-fluid">
-          <h4>延安洛川沼肥苹果 红富士 <small>80#16枚装</small></h4>
-          <p><strong>68</strong>元/盒</p> 
+          <h4>延安洛川沼肥苹果 红富士 <small id="category">80#16枚经济礼盒装</small></h4>
+          <p><strong id="price">68</strong>元/盒</p> 
           <hr style="border-top:dotted 1px #dddddd"/>
 
           <form>
@@ -38,7 +38,7 @@
               <div class="col-xs-4"><label for="amount">购买数量:</label></div>
               <div class="col-xs-8 ">
                 <input type="button" class="btn btn-default" onclick="plusUp()" value="+">
-                <input type="number" id="amount" value="1" onkeyup='this.value=this.value.replace(/\D/gi,"")' style="width:30%">
+                <input type="number" id="amount" value="1" onkeyup='this.value=this.value.replace(/\D/gi,"")' style="width:25%">
                 <input type="button" class="btn btn-default" onclick="minusDown()" value="-">
               </div>
             </div><hr>
@@ -71,8 +71,6 @@
             var amount=$("#amount").val();
             location.href="order_commit.html?amount="+amount;
           }
-          
-
         </script>
       </body>
       </html>
