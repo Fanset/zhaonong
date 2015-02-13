@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <title>订单详情</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+    .arrow{
+      float: right;
+    }
+    .col-xs-8{
+      text-align: left;
+    }
+    .col-xs-4{
+      text-align: center;
+      color: black;
+
+    }
+    .row{
+      padding:10px;
+    }
+    .box{   
+      border-bottom: 4px solid #dddddd;
+    }
+    .disp{
+      color: #7d7d7d;
+    }
+    #price,#amount{
+      color: red;
+    }
+    #epay{
+     margin:50px auto;
+    }
+    </style>
+  </head>
+  <body>
+ 
+  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="../js/getUrl.js"></script>
+    <script type="text/javascript">
+      var goodsid;
+      var goodsamount;
+
+
+        $(document).ready(function(){
+            goodsid=getUrlParam("id");
+            goodsamount=getUrlParam("amount");            
+            var gooddt=goodsData[goodsid-1];
+            var str=new Array();
+            var str=gooddt.price.split("￥");
+            str=parseInt(str[1]);
+            goodsamount=parseInt(goodsamount);
+            var total=str*goodsamount;
+            $("#price").text(total);
+            $("#category").text(gooddt.category);
+            $("#amount").text(goodsamount);
+        })
+    </script>
+
+
+    <div class="box">
+      <div class="row" onclick="editAddress()">
+        <div class="col-xs-4"><b>收货地址：</b></div>
+        <div class="col-xs-8"><span id="address"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="box">    
+      <div class="row" onclick="showContainer()">
+        <div class="col-xs-4"><b>配送时间：</b></div>
+        <div class="col-xs-8"><span id="time" class="disp"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true">
+        </div>
+     </div>
+    
+
+      <div class="container-fluid" style="display: none">
+        <div class="radio"><label class="option">
+          <input type="radio" name="timeRadios" id="weekendAndDay" value="weekendAndDay" onclick="hideContainer()">
+          <small>工作日及周末</small>
+        </label>
+      </div>
+        <div class="radio">
+          <label class="option">
+          <input type="radio" name="timeRadios" id="day" value="day" onclick="hideContainer()">
+          <small>仅工作日</small>
+        </label>
+      </div>
+        <div class="radio">
+          <label class="option">
+          <input type="radio" name="timeRadios" id="weekend" value="weekend" onclick="hideContainer()">
+          <small>仅周末</small>
+        </label>
+      </div>
+      </div>
+    </div>
+
+     <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>商品详情：</b></div>
+        <div class="col-xs-8"><span id="product">商品总金额：<span id="price"></span>元</span>
+          <br/>
+          <span id="category"></span>*<span id="amount"></span>盒
+        </div>
+      </div>
+    </div>
+    <div class="container text-center">
+
+        <a onclick="ePay()" class="btn btn-danger"id="epay">微信支付</a>
+    </div>
+
+
+<script type="text/javascript">
+  var expresstime;
+  function hideContainer(){
+    var expresstime= $('input:radio[name="timeRadios"]:checked').val();
+    $(".container-fluid").hide();
+    if(expresstime=="weekendAndDay"){
+      expresstime="工作日及周末"
+    }else if(expresstime=="day"){
+      expresstime="仅工作日"
+    }else if(expresstime=="weekend"){
+      expresstime="仅周末"
+    }
+    $("#time").text(expresstime);
+    
+  }
+  function showContainer(){
+    $(".container-fluid").show(1000);
+  }
+
+  function ePay(){
+
+  }
+
+function  editAddress(){
+  location.href="address.html";
+}
+</script>
+
+
+
+  </body>
+</html>

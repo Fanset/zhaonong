@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <title>地址信息</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        <style type="text/css">
+    .col-xs-8{
+      text-align: left;
+    }
+    .col-xs-4{
+      text-align: right;
+      color: black;
+      margin-top:6px;
+
+    }
+    .row{
+      padding:10px;
+    }
+    .box{   
+      border-bottom: 4px solid #dddddd;
+    }
+    .container{
+      margin:20px;
+    }
+    #save{
+      width:40%;
+    }
+
+    </style>
+
+  </head>
+  <body>
+ 
+  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function saveAddress(){
+       
+          if($("#name").val()=="")alert("姓名不能为空！");
+          else if($("#phone").val()=="" )alert("手机不能为空！");
+          else if($("#phone").val().length!==11)alert("手机号码不合法!"); 
+          else if($("#province").val()=="")alert("省份不能为空！");
+          else if($("#city").val()=="")alert("城市不能为空！");
+          else if($("#addressy").val()=="")alert("详细地址不能为空！");
+          else {history.back();}
+        
+        
+      }
+
+    </script>
+
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>收货人：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="name" class="form-control" placeholder="姓名"></div>
+      </div>
+    </div>
+
+
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>手机：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="phone" class="form-control" placeholder="手机号码" onkeyup='this.value=this.value.replace(/\D/gi,"")'></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>省份：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="province" class="form-control" placeholder="省份"></div>
+      </div>
+    </div>
+
+  <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>城市：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="city" class="form-control" placeholder="城市"></div>
+      </div>
+    </div>
+
+<div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>详细地址：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="address" class="form-control" placeholder="详细地址"></div>
+      </div>
+    </div>
+          <div class="container text-center">
+        <a onclick="saveAddress()" class="btn btn-danger" id="save">保存</a>
+
+    </div>
+  </body>
+</html>

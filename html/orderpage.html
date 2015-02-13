@@ -1,0 +1,95 @@
+  <!DOCTYPE html>
+  <html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <title>确定购买数量</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+      </head>
+      <body>
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../js/jquery-1.11.2.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/getUrl.js"></script>
+        <script type="text/javascript">
+        var goodsid;
+        
+        $(document).ready(function(){
+
+          goodsid=getUrlParam("id");
+          var gooddt=goodsData[goodsid-1]
+          var imgsrc="../image/"+gooddt.mainimgsrc;
+          $("#mainimg").attr("src",imgsrc);
+          $("#category").text(gooddt.per);
+          $("#price").text(gooddt.price);
+
+        })
+
+
+        </script>
+
+        <div class="title_img">
+          <img id="mainimg"id="goods" class="img-responsive" alt="Responsive image">
+        </div>
+        <div class="container-fluid">
+          <h4>延安洛川沼肥苹果 红富士 <small id="category"></small></h4>
+          <p><strong id="price"></strong>/盒</p> 
+          <hr style="border-top:dotted 1px #dddddd"/>
+
+          <form>
+            <div class="row form-group">
+              <div class="col-xs-4"><label for="amount">购买数量:</label></div>
+              <div class="col-xs-8 ">
+                <input type="button" class="btn btn-default btn-xs" onclick="plusUp()" value="+">
+                <input type="number" id="amount" value="1" onkeyup='this.value=this.value.replace(/\D/gi,"")' style="width:25%">
+                <input type="button" class="btn btn-default btn-xs" onclick="minusDown()" value="-">
+              </div>
+            </div><hr>
+            <div class="text-center">
+              <a class="btn btn-danger" onclick="submitNum()">立即下单</a>
+            </div>
+          </form>
+        </div>
+        <script type="text/javascript">
+        function plusUp(){
+          var num=$("#amount").val();
+          num=parseInt(num)+1;
+          if(num<=0){
+
+          }else{
+            $("#amount").val(num);
+          }
+          console.log(document.getElementById("amount"));
+        }
+        function minusDown(){
+          var num=$("#amount").val();
+          num=parseInt(num)-1;
+          if(num<=0){
+
+          }else{
+            $("#amount").val(num);
+          }
+        }
+        function submitNum(){
+          var amount=$("#amount").val();
+          if(amount==""||amount<=0){alert("数量不合法！")}
+          else {location.href="order_commit.html?id="+goodsid+"&amount="+amount;}
+        }
+        </script>
+      </body>
+      </html>
