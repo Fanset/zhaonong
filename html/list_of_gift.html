@@ -29,14 +29,21 @@
     <script src="../js/jquery-1.11.2.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/getUrl.js"></script>
 <div class="list-group">
   <a href="#" class="list-group-item active">
     沼肥苹果礼品装
   </a>
-  <a href="#" class="list-group-item">单个彩盒装（平安果）<span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
-  <a href="#" class="list-group-item">双个彩盒装（爱情果）<span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
-  <a href="#" class="list-group-item">9个85#环保牛皮纸礼盒 <span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
-  <a href="#" class="list-group-item">9个95#豪华礼盒装<span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
+  <a id="1" onclick="submitId(this.id)" class="list-group-item">单个彩盒装（平安果）<span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
+  <a id="2" onclick="submitId(this.id)" class="list-group-item">双个彩盒装（爱情果）<span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
+  <a id="3" onclick="submitId(this.id)" class="list-group-item">9个85#环保牛皮纸礼盒 <span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
+  <a id="4" onclick="submitId(this.id)" class="list-group-item">9个95#豪华礼盒装<span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></a>
 </div>
+<script type="text/javascript">
+    function submitId(id){ 
+      if(goodsData[id-1]==undefined){location.href="undefined.html";}
+      else {location.href="goodspage.html?id="+id;}
+    }
+</script>
   </body>
 </html>

@@ -42,26 +42,22 @@
         <script src="../js/jquery-1.11.2.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/getUrl.js"></script>
         <script type="text/javascript">
-        var goodsid;
-        var goodsData=[{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg"},{"mainimgsrc":"16_80.jpg","mycimgsrc":"goodspage/07.jpg","price":"￥168","weight":"3600g","per":"16枚*80#"},{"mainimgsrc":"24_75.jpg","mycimgsrc":"goodspage/08.jpg","price":"￥158","weight":"5000g","per":"24枚*75#"}];
-
+         var goodsid;
           $(document).ready(function(){
-            function getUrlParam(name){
-              var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
-              var r=window.location.search.substr(1).match(reg);
-              if(r!=null){
-                return unescape(r[2]);
-              }
-              return null;
-            }
+            
+
              goodsid=getUrlParam("id");
-            var gooddt=goodsData[goodsid-1]
-            var imgsrc="../image/"+gooddt.mycimgsrc;
+
+            var gooddt=goodsData[goodsid-1];
+
+             var imgsrc="../image/"+gooddt.mycimgsrc;
            $("#myc").attr("src",imgsrc);
            $(".per").text(gooddt.per);
            $(".weight").text(gooddt.weight);
-
+           $("#category").text(gooddt.category);
+           $("#price").text(gooddt.price);
           })
 
           function perchase(){
@@ -123,8 +119,8 @@
       </div><!-- /.carousel -->
       <div class="container-fluid">
         <div class="page-header">
-          <h3>延安洛川沼肥苹果 红富士 <small class="per"></small></h3>
-          <h4 id="price">￥168</h4>
+          <h3>延安洛川沼肥苹果 红富士 <br><small id="category"></small></h3>
+          <h4 id="price"></h4>
 
         </div>
         <div class="row">

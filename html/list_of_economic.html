@@ -29,6 +29,7 @@
     <script src="../js/jquery-1.11.2.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/getUrl.js"></script>
 <div class="list-group">
   <a href="#" class="list-group-item active">
     沼肥苹果经济装
@@ -38,8 +39,9 @@
 </div>
 
 <script type="text/javascript">
-    function submitId(id){
-      location.href="goodspage.html?id="+id;
+       function submitId(id){ 
+      if(goodsData[id-1]==undefined){location.href="undefined.html";}
+      else {location.href="goodspage.html?id="+id;}
     }
 </script>
   </body>
