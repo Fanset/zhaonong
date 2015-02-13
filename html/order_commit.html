@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
     <title>订单详情</title>
 
     <!-- Bootstrap -->
@@ -76,7 +76,7 @@
 
 
     <div class="box">
-      <div class="row">
+      <div class="row" onclick="editAddress()">
         <div class="col-xs-4"><b>收货地址：</b></div>
         <div class="col-xs-8"><span id="address"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></div>
       </div>
@@ -149,6 +149,9 @@
 
   }
 
+function  editAddress(){
+  location.href="address.html";
+}
 </script>
 
 

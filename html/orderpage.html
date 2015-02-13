@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
     <title>确定购买数量</title>
 
     <!-- Bootstrap -->
@@ -87,7 +87,8 @@
         }
         function submitNum(){
           var amount=$("#amount").val();
-          location.href="order_commit.html?id="+goodsid+"&amount="+amount;
+          if(amount==""||amount<=0){alert("数量不合法！")}
+          else {location.href="order_commit.html?id="+goodsid+"&amount="+amount;}
         }
         </script>
       </body>

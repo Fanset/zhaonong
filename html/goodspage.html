@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
   <title>老沼农-沼肥苹果</title>
 
   <!-- Bootstrap -->
@@ -66,7 +66,7 @@
      } 
      return ""; 
    } 
-   document.cookie="id=7";
+   addCookie("id",goodsid,0);
  //  addCookie("id",goodsid,100);
    console.log(getCookie("id"));
 
@@ -161,7 +161,7 @@
     <br />
     <ul class="list-group">
       <a href="goodsdetail.html" class="list-group-item">商品详情<span class="glyphicon glyphicon-menu-right navbar-right" aria-hidden="true"></span></a>
-
+     <br><br><br>
     </ul>
 
     <nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
