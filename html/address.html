@@ -16,6 +16,30 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <style type="text/css">
+    .col-xs-8{
+      text-align: left;
+    }
+    .col-xs-4{
+      text-align: right;
+      color: black;
+      margin-top:6px;
+
+    }
+    .row{
+      padding:10px;
+    }
+    .box{   
+      border-bottom: 4px solid #dddddd;
+    }
+    .container{
+      margin:20px;
+    }
+    #save{
+      width:40%;
+    }
+
+    </style>
 
   </head>
   <body>
@@ -26,5 +50,49 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
 
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>收货人：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="name" class="form-control" placeholder="姓名"></div>
+      </div>
+    </div>
+
+
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>手机：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="name" class="form-control" placeholder="手机号码" onkeyup='this.value=this.value.replace(/\D/gi,"")'></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>省份：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="privince" class="form-control" placeholder="省份"></div>
+      </div>
+    </div>
+
+  <div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>城市：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="city" class="form-control" placeholder="城市"></div>
+      </div>
+    </div>
+
+<div class="box">
+      <div class="row">
+        <div class="col-xs-4"><b>详细地址：</b></div>
+        <div class="col-xs-8">
+          <input type="text" id="address" class="form-control" placeholder="详细地址"></div>
+      </div>
+    </div>
+          <div class="container text-center">
+        <a onclick="" class="btn btn-danger" id="save">保存</a>
+
+    </div>
   </body>
 </html>
