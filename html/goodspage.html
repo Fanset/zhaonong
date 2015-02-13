@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+    <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+  <!-- <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/> -->
   <title>老沼农-沼肥苹果</title>
-
-  <!-- Bootstrap -->
+          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../js/jquery-2.1.1.js"></script>
+          <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/getUrl.js"></script>
+        <script src="../js/goodspage.js"></script>
+          <!-- Bootstrap -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -17,7 +22,7 @@
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 
       <![endif]-->
-      <style type="text/css">
+     <style type="text/css">
       img{
         margin:0px auto;
       }
@@ -34,63 +39,9 @@
         text-align: left;
       }
       </style>
-    </head>
-    <body>
-
-
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="../js/jquery-1.11.2.min.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="../js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="../js/getUrl.js"></script>
-      <script type="text/javascript">
-       var goodsid;
-       goodsid=getUrlParam("id");
-       function addCookie(name,value,expireHours){ 
-           var cookieString=name+"="+escape(value); 
-       //判断是否设置过期时间
-
-           if(expireHours>0){ 
-            var date=new Date(); 
-            date.setTime(date.getTime+expireHours*3600*1000); 
-            cookieString=cookieString+"; expire="+date.toGMTString(); 
-      } 
-       document.cookie=cookieString; 
-    } 
-        function getCookie(name){ 
-         var strCookie=document.cookie; 
-         var arrCookie=strCookie.split("; "); 
-     for(var i=0;i<arrCookie.length;i++){ 
-       var arr=arrCookie[i].split("="); 
-       if(arr[0]==name)return arr[1]; 
-     } 
-     return ""; 
-   } 
-   addCookie("id",goodsid,0);
- //  addCookie("id",goodsid,100);
-   console.log(getCookie("id"));
-
-        $(document).ready(function(){
-          
-          var gooddt=goodsData[goodsid-1];
-
-           var imgsrc="../image/"+gooddt.mycimgsrc;
-         $("#myc").attr("src",imgsrc);
-         $(".per").text(gooddt.per);
-         $(".weight").text(gooddt.weight);
-         $("#category").text(gooddt.category);
-         $("#price").text(gooddt.price);
-        })
-
-        function perchase(){
-            location.href="orderpage.html?id="+goodsid;
-        }
-      </script>
-
-
-
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
+</head>
+<body>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators" >
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -99,35 +50,35 @@
           <li data-target="#myCarousel" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner" role="listbox" >
-          <div class="active item">
-            <img id="myc" alt="First slide" class="img-responsive" >
-            <div class="container">
+            <div class="active item">
+                <img id="myc" src="../image/goodspage/" alt="First slide" class="img-responsive" >
+                <div class="container">
 
+                </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="../image/goodspage/2.jpg" alt="Second slide" class="img-responsive" >
-            <div class="container">
+            <div class="item">
+                <img src="../image/goodspage/2.jpg" alt="Second slide" class="img-responsive" >
+                <div class="container">
+                </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="../image/goodspage/3.jpg" alt="Third slide" class="img-responsive">
-            <div class="container">
+            <div class="item">
+                <img src="../image/goodspage/3.jpg" alt="Third slide" class="img-responsive">
+                <div class="container">
 
+                </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="../image/goodspage/4.jpg" alt="Fourth slide" class="img-responsive">
-            <div class="container">
+            <div class="item">
+                <img src="../image/goodspage/4.jpg" alt="Fourth slide" class="img-responsive">
+                <div class="container">
 
+                </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="../image/goodspage/5.jpg" alt="Fifth slide" class="img-responsive">
-            <div class="container">
+            <div class="item">
+                <img src="../image/goodspage/5.jpg" alt="Fifth slide" class="img-responsive">
+                <div class="container">
 
+                </div>
             </div>
-          </div>
         </div>
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -137,8 +88,7 @@
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </div>
-    </div><!-- /.carousel -->
+    </div>
     <div class="container-fluid">
       <div class="page-header">
         <h3>延安洛川沼肥苹果 红富士 <br><small id="category"></small></h3>
@@ -163,14 +113,10 @@
       <a href="goodsdetail.html" class="list-group-item">商品详情<span class="glyphicon glyphicon-menu-right navbar-right" aria-hidden="true"></span></a>
      <br><br><br>
     </ul>
-
     <nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
-      <div class="container text-right">
-        <a onclick="perchase()" class="btn btn-danger navbar-btn ">立即购买</a>
-      </div>
-    </form>
-  </div>
-</nav>
-
+        <div class="container text-right">
+            <a id="perchase" class="btn btn-danger navbar-btn ">立即购买</a>
+        </div>
+    </nav>
 </body>
 </html>
