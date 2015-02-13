@@ -28,10 +28,12 @@
         <script type="text/javascript" src="../js/getUrl.js"></script>
         <script type="text/javascript">
         var goodsid;
-        
+       
+        goodsid=getCookie("id");
+
         $(document).ready(function(){
 
-          goodsid=getUrlParam("id");
+        //  goodsid=getUrlParam("id");
           var gooddt=goodsData[goodsid-1]
           var imgsrc="../image/"+gooddt.mainimgsrc;
           $("#mainimg").attr("src",imgsrc);
