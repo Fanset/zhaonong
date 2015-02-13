@@ -26,10 +26,11 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/getUrl.js"></script>
+        <script type="text/javascript" src="../js/getcookie.js"></script>
         <script type="text/javascript">
         var goodsid;
        
-        goodsid=getCookie("id");
+        goodsid=getUrlParam("id");
 
         $(document).ready(function(){
 
@@ -46,7 +47,7 @@
         </script>
 
         <div class="title_img">
-          <img id="mainimg"id="goods" class="img-responsive" alt="Responsive image">
+          <img id="mainimg" class="img-responsive" alt="Responsive image">
         </div>
         <div class="container-fluid">
           <h4>延安洛川沼肥苹果 红富士 <small id="category"></small></h4>
@@ -90,7 +91,10 @@
         function submitNum(){
           var amount=$("#amount").val();
           if(amount==""||amount<=0){alert("数量不合法！")}
-          else {location.href="order_commit.html?id="+goodsid+"&amount="+amount;}
+          else {
+            var str="amount="+escape(amount);
+            document.cookie=str;
+            location.href="order_commit.html?id="+goodsid+"&amount="+amount;}
         }
         </script>
       </body>

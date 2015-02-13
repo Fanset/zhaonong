@@ -54,6 +54,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
      <script type="text/javascript" src="../js/getUrl.js"></script>
+     <script type="text/javascript" src="../js/getcookie.js"></script>
     <script type="text/javascript">
       var goodsid;
       var goodsamount;
@@ -71,6 +72,22 @@
             $("#price").text(total);
             $("#category").text(gooddt.category);
             $("#amount").text(goodsamount);
+            var save=getCookie("save");  //判断地址是否已保存
+            var exsave=getCookie("exsave"); //判断配送时间是否已选择
+            if(exsave=="true"){
+              var time=unescape(getCookie("time"));
+              $("#time").text(time);
+            }
+            if(save=="true"){
+            var name=unescape(getCookie("name"));
+            var phone=unescape(getCookie("phone"));
+            var province=unescape(getCookie("province"));
+            var city=unescape(getCookie("city"));
+            var caddress=unescape(getCookie("address"));
+            var addressStr=province+city+caddress+" 收货人:"+name+phone;
+            $("#address").text(addressStr);
+            }
+
         })
     </script>
 
@@ -78,7 +95,7 @@
     <div class="box">
       <div class="row" onclick="editAddress()">
         <div class="col-xs-4"><b>收货地址：</b></div>
-        <div class="col-xs-8"><span id="address"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></div>
+        <div class="col-xs-8"><span id="address" class="disp"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></div>
       </div>
     </div>
 
@@ -93,7 +110,7 @@
       <div class="container-fluid" style="display: none">
         <div class="radio"><label class="option">
           <input type="radio" name="timeRadios" id="weekendAndDay" value="weekendAndDay" onclick="hideContainer()">
-          <small>工作日及周末</small>
+          <small >工作日及周末</small>
         </label>
       </div>
         <div class="radio">
@@ -139,6 +156,8 @@
       expresstime="仅周末"
     }
     $("#time").text(expresstime);
+    addCookie("time",expresstime);
+    addCookie("exsave","true");
     
   }
   function showContainer(){

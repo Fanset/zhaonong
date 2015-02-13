@@ -50,20 +50,45 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/getUrl.js"></script>
+    <script type="text/javascript" src="../js/getcookie.js"></script>
     <script type="text/javascript">
       function saveAddress(){
        
-          if($("#name").val()=="")alert("姓名不能为空！");
+         if($("#name").val()=="")alert("姓名不能为空！");
           else if($("#phone").val()=="" )alert("手机不能为空！");
           else if($("#phone").val().length!==11)alert("手机号码不合法!"); 
           else if($("#province").val()=="")alert("省份不能为空！");
           else if($("#city").val()=="")alert("城市不能为空！");
-          else if($("#addressy").val()=="")alert("详细地址不能为空！");
-          else {history.back();}
-        
+          else if($("#address").val()=="")alert("详细地址不能为空！");
+          else {
+            var str1=$("#name").val();
+            addCookie("name",str1);
+           var str2=$("#phone").val();
+            addCookie("phone",str2);
+            var str3=$("#province").val();
+            addCookie("province",str3);
+            var str4=$("#city").val();
+            addCookie("city",str4);
+            var str5=$("#address").val();
+            addCookie("address",str5);
+            addCookie("save","true");
+           history.back();
+          }
         
       }
+      $(document).ready(function(){
 
+          var savead=getCookie("save");
+          if(savead=="true"){
+            $("#name").attr("value",unescape(getCookie("name")));
+           $("#phone").attr("value",unescape(getCookie("phone")));
+            $("#province").attr("value",unescape(getCookie("province")));
+            $("#city").attr("value",unescape(getCookie("city")));
+            $("#address").attr("value",unescape(getCookie("address")));
+
+          }
+
+      })
     </script>
 
     <div class="box">
