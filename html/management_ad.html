@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <title>地址管理</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+ 
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/getUrl.js"></script>
+    <script type="text/javascript">
+      $(document).ready(){
+            var xmlhttp;
+           if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+          }else{
+             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+
+          xmlhttp.open("POST","address.php",true);
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xmlhttp.onreadystatechange = function() {
+             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+
+            var text = xmlhttp.responseText;
+            if(text=null){
+              
+            }else{
+              text = eval("("+text+")");
+              for(var i = 0; i < text.length; i++){
+                  var id = text[i].id;
+                  var address = text[i].address;
+              }
+            }
+          }
+        }
+      }
+
+    </script>
+    <div class="list-group">
+      <div class="list-group-item">
+      <div class="row">
+        <div class="col-xs-2 text-left">
+        <input type="checkbox" name="address" value="1"></div>
+        <div class="col-xs-8 text-left">罗夏君18922326092广东省广州市天河区沙和路164号401</div>
+          <div class="col-xs-2"><span class="glyphicon glyphicon-pencil arrow" aria-hidden="true"></div>
+      </div>
+    </div>
+    </div>
+    <!--<div class="empty-box text-center">
+      <p>暂无收货地址!</p>
+    </div>-->
+    <div class="btn-container text-center">
+      <button class="btn btn-danger">新增收货地址</button>
+    </div>
+
+  </body>
+</html>

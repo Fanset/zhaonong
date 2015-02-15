@@ -36,7 +36,7 @@ function perchase(goodsid){
     } 
     document.cookie=cookieString; 
 } */
-function getCookie(name){ 
+/*function getCookie(name){ 
      var strCookie=document.cookie; 
      // alert(strCookie);
      var arrCookie=strCookie.split("; "); 
@@ -45,4 +45,4 @@ function getCookie(name){
        if(arr[0]==name)return arr[1]; 
      } 
  return ""; 
-} 
+} */
