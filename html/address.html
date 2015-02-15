@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="../css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,7 +16,7 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-        <style type="text/css">
+    <!-- <style type="text/css">
     .col-xs-7{
       text-align: left;
     }
@@ -26,19 +26,19 @@
       margin-top:6px;
 
     }
-    .row{
+    .box{
       padding:10px;  
       border-bottom: 4px solid #dddddd;
       margin: 0px;
     }
-    .container{
+    .btn-container{
       margin:20px;
     }
     #save{
       width:40%;
     }
 
-    </style>
+    </style> -->
 
   </head>
   <body>
@@ -87,43 +87,49 @@
 
           }
 
-      })
+      })ok
     </script>
 
-
+      <div class="box">
       <div class="row">
         <div class="col-xs-5"><b>收货人：</b></div>
         <div class="col-xs-7">
           <input type="text" id="name" class="form-control" placeholder="姓名"></div>
       </div>
+    </div>
 
+      <div class="box">
       <div class="row">
         <div class="col-xs-5"><b>手机：</b></div>
         <div class="col-xs-7">
           <input type="text" id="phone" class="form-control" placeholder="手机号码" onkeyup='this.value=this.value.replace(/\D/gi,"")'></div>
       </div>
+    </div>
 
-
+    <div class="box">
       <div class="row">
         <div class="col-xs-5"><b>省份：</b></div>
         <div class="col-xs-7">
           <input type="text" id="province" class="form-control" placeholder="省份"></div>
       </div>
-
-
+    </div>
+      <div class="box">
       <div class="row">
         <div class="col-xs-5"><b>城市：</b></div>
         <div class="col-xs-7">
           <input type="text" id="city" class="form-control" placeholder="城市"></div>
       </div>
-
+  </div>
+      <div class="box">
       <div class="row">
         <div class="col-xs-5"><b>详细地址：</b></div>
         <div class="col-xs-7">
           <input type="text" id="address" class="form-control" placeholder="详细地址"></div>
       </div>
+    </div>
 
-          <div class="container text-center">
+
+          <div class="btn-container text-center">
         <a onclick="saveAddress()" class="btn btn-danger" id="save">保存</a>
 
     </div>

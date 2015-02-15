@@ -1,0 +1,45 @@
+
+    .box{
+      padding:10px;  
+      border-bottom: 4px solid #dddddd;
+      margin: 0px;
+    }
+    .btn-container{
+      margin:20px;
+    }
+    #save{
+      width:40%;
+    }
+ img{
+        margin:0px auto;
+      }
+.col-xs-6{
+        text-align: left;
+      }
+nav{
+        border:none;
+   }
+.arrow{
+        float: right;
+      }
+    .col-xs-7{
+      text-align: left;
+    }
+    .col-xs-5{
+      text-align: left;
+      color: black;
+
+    }
+    .disp{
+      color: #7d7d7d;
+    }
+    #price,#amount{
+      color: red;
+    }
+    #epay{
+     margin:50px auto;
+    }
+      #undefined{
+    font-size: 10px;
+    color:#7d7d7d;
+  }
