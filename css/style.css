@@ -4,6 +4,9 @@
       border-bottom: 3px solid #dddddd;
       margin: 0px;
     }
+    .title{
+      background-color: #d9534f;
+    }
     .btn-container{
       margin:40px;
     }
