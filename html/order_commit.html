@@ -36,7 +36,7 @@
       var address_id;
 
         $(document).ready(function(){
-            goodsid=getCookie("id");
+            goodsid=getUrlParam("id");
             user_id=getCookie("user_id"); 
             address_id=getUrlParam("address_id");        
             var gooddt=goodsData[goodsid-1];
