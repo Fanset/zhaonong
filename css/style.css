@@ -26,7 +26,7 @@ nav{
     .disp{
       color: #7d7d7d;
     }
-    #price,#amount{
+    #price,#total,#amount{
       color: red;
     }
 

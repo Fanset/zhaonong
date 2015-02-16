@@ -16,29 +16,6 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- <style type="text/css">
-    .col-xs-7{
-      text-align: left;
-    }
-    .col-xs-5{
-      text-align: right;
-      color: black;
-      margin-top:6px;
-
-    }
-    .box{
-      padding:10px;  
-      border-bottom: 4px solid #dddddd;
-      margin: 0px;
-    }
-    .btn-container{
-      margin:20px;
-    }
-    #save{
-      width:40%;
-    }
-
-    </style> -->
 
   </head>
   <body>
@@ -51,46 +28,110 @@
     <script type="text/javascript" src="../js/getUrl.js"></script>
     <script type="text/javascript" src="../js/getcookie.js"></script>
     <script type="text/javascript">
+
+      var address_id=getUrlParam("address_id");
+      var user_id=getUrlParam("user_id");
+
       function saveAddress(){
-       
-         if($("#name").val()=="")alert("姓名不能为空！");
-          else if($("#phone").val()=="" )alert("手机不能为空！");
+          var name=$("#name").val();
+          var phone=$("#phone").val();
+          var province=$("#province").val();
+          var city=$("#city").val();
+          var address=$("#address").val();
+         if(name=="")alert("姓名不能为空！");
+          else if(phone=="" )alert("手机不能为空！");
           else if($("#phone").val().length!==11)alert("手机号码不合法!"); 
-          else if($("#province").val()=="")alert("省份不能为空！");
-          else if($("#city").val()=="")alert("城市不能为空！");
-          else if($("#address").val()=="")alert("详细地址不能为空！");
+          else if(province=="")alert("省份不能为空！");
+          else if(city=="")alert("城市不能为空！");
+          else if(address=="")alert("详细地址不能为空！");
           else {
-            var str1=$("#name").val();
-            addCookie("name",str1);
-           var str2=$("#phone").val();
-            addCookie("phone",str2);
-            var str3=$("#province").val();
-            addCookie("province",str3);
-            var str4=$("#city").val();
-            addCookie("city",str4);
-            var str5=$("#address").val();
-            addCookie("address",str5);
-            addCookie("save","true");
-           history.back();
+          var xmlhttp;
+           if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+          }else{
+             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+         }            
+          if(address_id==undefined){
+            var url="user_id="+user_id++"&name="+name+"&phone="+phone+"&province="+province+"&city="+city+"&address="+address; }//无address_id，后台动态分配address_id
+          else{
+            var url="user_id="+user_id+"&address_id="+address_id+"&name="+name+"&phone="+phone+"&province="+province+"&city="+city+"&address="+address;
           }
-        
+            xmlhttp.open("POST","address.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange=function(){
+              var info=xmlhttp.responseText;
+              if(info=="true"){
+                alert("地址信息保存成功！") 
+                history.back();
+              }
+              else{alert(info);
+              }
+
+            }
+            xmlhttp.send(url);       
+           
+          }        
       }
-      $(document).ready(function(){
+      function deleteAddress(address_id){
+        var xmlhttp;
+           if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+          }else{
+             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+          var url="user_id="+encodeURIComponent(user_id)+"&address_id="+encodeURIComponent(address_id);
+          xmlhttp.open("POST","address.php",true);
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xmlhttp.onreadystatechange = function() {
+             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+             var info = xmlhttp.responseText;
+             var info= eval("("+info+")");
+             if(info="true"){
+              alert("删除地址信息成功!");
+              history.back();
+             }
+              else{alert(info);
+              }
+          }
+        }
+        xmlhttp.send(url);
+      }
 
-          var savead=getCookie("save");
-          if(savead=="true"){
-            $("#name").attr("value",unescape(getCookie("name")));
-           $("#phone").attr("value",unescape(getCookie("phone")));
-            $("#province").attr("value",unescape(getCookie("province")));
-            $("#city").attr("value",unescape(getCookie("city")));
-            $("#address").attr("value",unescape(getCookie("address")));
+
+
+      $(document).ready(function(){
+          //var savead=getCookie("save");
+          if(address_id==undefined){
 
           }
-
+          else{   //从编辑入口进入获得address_id则页面增加”删除“按钮
+          $("[class='btn-container text-center']").append("<a onclick=\"deleteAddress(address_id)\" class=\"btn btn-danger\" style=\"margin:0px 10px\" id=\"delete\">删除</a>");  
+          var xmlhttp;
+           if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+          }else{
+             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+          var url="user_id="+encodeURIComponent(user_id)+"&address_id="+encodeURIComponent(address_id);
+          xmlhttp.open("POST","address.php",true);
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xmlhttp.onreadystatechange = function() {
+             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+             var info = xmlhttp.responseText;
+             var text = eval("("+info+")");
+            $("#name").attr("value",unescape(text.name));
+           $("#phone").attr("value",unescape(text.phone));
+            $("#province").attr("value",unescape(text.province));
+            $("#city").attr("value",unescape(text.city));
+            $("#address").attr("value",unescape(text.address));
+          }
+        }
+        xmlhttp.send(url);
       })
-    </script>
 
-      <div class="box">
+    </script>
+  <div class="list-group">
+    <div class="list-group-item">
       <div class="row">
         <div class="col-xs-4 text-right" style="padding:7px"><b>收货人：</b></div>
         <div class="col-xs-8">
@@ -98,7 +139,7 @@
       </div>
     </div>
 
-      <div class="box">
+      <div class="list-group-item">
       <div class="row">
         <div class="col-xs-4 text-right" style="padding:7px"><b>手机：</b></div>
         <div class="col-xs-8">
@@ -106,32 +147,32 @@
       </div>
     </div>
 
-    <div class="box">
+    <div class="list-group-item">
       <div class="row">
         <div class="col-xs-4 text-right" style="padding:7px"><b>省份：</b></div>
         <div class="col-xs-8">
           <input type="text" id="province" class="form-control" placeholder="省份"></div>
       </div>
     </div>
-      <div class="box">
+      <div class="list-group-item">
       <div class="row">
         <div class="col-xs-4 text-right" style="padding:7px"><b>城市：</b></div>
         <div class="col-xs-8">
           <input type="text" id="city" class="form-control" placeholder="城市"></div>
       </div>
   </div>
-      <div class="box">
+      <div class="list-group-item">
       <div class="row">
         <div class="col-xs-4 text-right" style="padding:7px"><b>详细地址：</b></div>
         <div class="col-xs-8">
           <input type="text" id="address" class="form-control" placeholder="详细地址"></div>
       </div>
     </div>
+</div>
 
-
-          <div class="btn-container text-center">
-        <a onclick="saveAddress()" class="btn btn-danger" id="save">保存</a>
-
+     <div class="btn-container text-center">
+        <a onclick="saveAddress()" class="btn btn-success" style="margin:0px 10px" id="save">保存</a>
+        <!--<a onclick="deleteAddress(address_id)" class="btn btn-danger" style="margin:0px 10px" id="delete">删除</a>-->
     </div>
   </body>
 </html>

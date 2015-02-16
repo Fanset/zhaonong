@@ -31,47 +31,91 @@
     <script type="text/javascript">
       var goodsid;
       var goodsamount;
-
+      var price;
+      var user_id;
+      var address_id;
 
         $(document).ready(function(){
-            goodsid=getUrlParam("id");
-            goodsamount=getUrlParam("amount");            
+            goodsid=getCookie("id");
+            user_id=getCookie("user_id"); 
+            address_id=getUrlParam("address_id");        
             var gooddt=goodsData[goodsid-1];
+            var management_ad=getCookie("management_ad");//判断是否从地址管理页面返回，从页面返回则从cookie中读取原有的货品数量信息
+            if(management_ad=="true"){
+                  var amount=getCookie("amount");
+                  $("#amount").attr("value",unescape(amount));
+                  var time=unescape(getCookie("time"));
+                  $("#time").text(time);}                
+            else{var amount=$("#amount").val();}     
+
+            var imgsrc="../image/"+gooddt.mainimgsrc;           
             var str=new Array();
-            var str=gooddt.price.split("￥");
-            str=parseInt(str[1]);
-            goodsamount=parseInt(goodsamount);
-            var total=str*goodsamount;
-            $("#price").text(total);
-            $("#category").text(gooddt.category);
-            $("#amount").text(goodsamount);
-            var save=getCookie("save");  //判断地址是否已保存
-            var exsave=getCookie("exsave"); //判断配送时间是否已选择
+            str=gooddt.price.split("￥");
+            price=parseInt(str[1]);
+            goodsamount=parseInt(amount);
+            var total=price*goodsamount;
+            $("#mainimg").attr("src",imgsrc);
+            $("#price").text(gooddt.price);
+            $("#total").text(total);
+            $(".category").text(gooddt.category);
+            $("#tamount").text(goodsamount);
+
+            var exsave=getCookie("exsave"); //判断配送时间是否已选择，显示配送时间
             if(exsave=="true"){
               var time=unescape(getCookie("time"));
               $("#time").text(time);
             }
-            if(save=="true"){
-            var name=unescape(getCookie("name"));
-            var phone=unescape(getCookie("phone"));
-            var province=unescape(getCookie("province"));
-            var city=unescape(getCookie("city"));
-            var caddress=unescape(getCookie("address"));
-            var addressStr=province+city+caddress+" 收货人:"+name+phone;
-            $("#address").text(addressStr);
+
+            if(address_id==undefined){
+
+            }
+            else{                          //ajax显示已选择的地址
+             var xmlhttp;
+            if (window.XMLHttpRequest) {
+              xmlhttp = new XMLHttpRequest();
+           }else{
+             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+           }
+            var url="user_id="+encodeURIComponent(user_id)+"&address_id="+encodeURIComponent(address_id);
+            xmlhttp.open("POST","address.php",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.onreadystatechange = function() {
+             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+             var info = xmlhttp.responseText;
+             var text = eval("("+info+")");
+             var name=text.name;
+             var phone=text.phone;
+             var province=text.province;
+             var city=text.city;
+             var address=text.address;
+             var address_str=province+city+address+"收件人："+name+phone;
+             $("#address").text(address_str);
+          }
+        }
+        xmlhttp.send(url);
             }
 
         })
     </script>
 
-    <div class="box">
+    <div class="title_img">
+          <img id="mainimg" class="img-responsive" alt="Responsive image">
+    </div>
+
+    <div class="container-fluid">
+          <h4>延安洛川沼肥苹果 红富士 <small class="category"></small></h4>
+          <p><strong id="price"></strong>/盒</p> 
+    </div>
+
+  <div class="list-group">
+    <div class="list-group-item">
       <div class="row" onclick="editAddress()">
         <div class="col-xs-4"><b>收货地址：</b></div>
         <div class="col-xs-8"><span id="address" class="disp"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true"></div>
       </div>
     </div>
 
-    <div class="box">    
+    <div class="list-group-item">    
       <div class="row" onclick="showContainer()">
         <div class="col-xs-4"><b>配送时间：</b></div>
         <div class="col-xs-8"><span id="time" class="disp"></span><span class="glyphicon glyphicon-menu-right navbar-right arrow" aria-hidden="true">
@@ -79,36 +123,57 @@
      </div>
     
 
-      <div class="container-fluid" style="display: none">
-        <div class="radio"><label class="option">
-          <input type="radio" name="timeRadios" id="weekendAndDay" value="weekendAndDay" onclick="hideContainer()">
-          <small >工作日及周末</small>
-        </label>
-      </div>
+      <div class="container-fluid" id="expchoice" style="display: none">
         <div class="radio">
           <label class="option">
-          <input type="radio" name="timeRadios" id="day" value="day" onclick="hideContainer()">
-          <small>仅工作日</small>
-        </label>
-      </div>
+            <input type="radio" name="timeRadios" id="weekendAndDay" value="weekendAndDay" onclick="hideContainer()">
+            <small >工作日及周末</small>
+         </label>
+        </div>
         <div class="radio">
           <label class="option">
-          <input type="radio" name="timeRadios" id="weekend" value="weekend" onclick="hideContainer()">
-          <small>仅周末</small>
-        </label>
-      </div>
-      </div>
-    </div>
-
-     <div class="box">
-      <div class="row">
-        <div class="col-xs-4"><b>商品详情：</b></div>
-        <div class="col-xs-8"><span id="product">商品总金额：<span id="price"></span>元</span>
-          <br/>
-          <span id="category"></span>*<span id="amount"></span>盒
+            <input type="radio" name="timeRadios" id="day" value="day" onclick="hideContainer()">
+            <small>仅工作日</small>
+          </label>
+        </div>
+        <div class="radio">
+            <label class="option">
+              <input type="radio" name="timeRadios" id="weekend" value="weekend" onclick="hideContainer()">
+              <small>仅周末</small>
+           </label>
         </div>
       </div>
     </div>
+
+     <div class="list-group-item">
+      <div class="row">
+          <div class="col-xs-4"><label for="amount">购买数量:</label></div>
+           <div class="col-xs-8 ">
+                <input type="button" class="btn btn-default " onclick="plusUp()" value="+">
+                <input type="number" id="amount" value="1" onchange="submitNum()" onkeyup='this.value=this.value.replace(/\D/gi,"");' style="width:25%">
+                <input type="button" class="btn btn-default" onclick="minusDown()" value="-">
+         </div>
+      </div>
+    </div>
+
+     <div class="list-group-item">
+      <div class="row">
+        <div class="col-xs-4"><b>商品详情：</b></div>
+        <div class="col-xs-8">
+          <span class="category"></span>*<span id="tamount"></span>盒
+        </div>
+      </div>
+    </div>
+  
+  <div class="list-group-item">
+      <div class="row">
+        <div class="col-xs-4"><b>商品总金额：</b></div>
+        <div class="col-xs-8"><span id="total"></span>元
+        </div>
+      </div>
+
+  </div>
+</div>
     <div class="btn-container text-center">
 
         <a onclick="ePay()" class="btn btn-danger" id="epay">微信支付</a>
@@ -116,10 +181,55 @@
 
 
 <script type="text/javascript">
+    
+        function plusUp(){
+          var num=$("#amount").val();
+          num=parseInt(num)+1;
+          if(num<=0){
+
+          }else{
+            $("#amount").val(num);
+            var total=price*num;
+            $("#total").text(total);
+            $("#tamount").text(num);
+            addCookie("amount",num);
+          }
+          console.log(document.getElementById("amount"));
+        }
+        function minusDown(){
+          var num=$("#amount").val();
+          num=parseInt(num)-1;
+          if(num<=0){
+
+          }else{
+            $("#amount").val(num);
+             var total=price*num;
+            $("#total").text(total);
+            $("#tamount").text(num);
+            addCookie("amount",num);
+          }
+        }
+
+        function submitNum(){
+          var amount=$("#amount").val();
+          if(amount==""||amount<=0){alert("数量不合法！")}
+          else {
+            goodsamount=parseInt(amount);
+            var total=price*goodsamount;
+            $("#total").text(total);
+            $("#tamount").text(goodsamount);
+            addCookie("amount",goodsamount);
+           // location.href="order_commit.html?id="+goodsid+"&amount="+amount;
+
+         }
+        }
+
+  
+
   var expresstime;
     function hideContainer(){
     var expresstime= $('input:radio[name="timeRadios"]:checked').val();
-    $(".container-fluid").hide();
+    $("#expchoice").hide();
     if(expresstime=="weekendAndDay"){
       expresstime="工作日及周末"
     }else if(expresstime=="day"){
@@ -133,7 +243,7 @@
     
   }
     function showContainer(){
-    $(".container-fluid").show(500);
+    $("#expchoice").show(500);
   }
 
     function ePay(){
@@ -141,7 +251,9 @@
   }
 
   function  editAddress(){
-  location.href="address.html";
+  location.href="management_ad.html?user_id="+user_id+"&commit=0";//commit为从订单页面进入地址管理的判断参数
+  
+
 }
 </script>
 

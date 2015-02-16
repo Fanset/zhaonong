@@ -10,10 +10,12 @@
           <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/getUrl.js"></script>
-        <script src="../js/goodspage.js"></script>
+        <script src="../js/getcookie.js"></script>
+      
           <!-- Bootstrap -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/style.css" rel="stylesheet">
+
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -26,6 +28,35 @@
 
 </head>
 <body>
+  <script type="text/javascript">
+    var user_id=getUrlParam("user_id")
+    $(document).ready(function(){   
+    var goodsid;
+    goodsid=getUrlParam("id");
+    // alert(goodsid);
+    addCookie("id",goodsid);
+    addCookie("user_id",user_id);
+ //   goodsid=getCookie("id");
+    console.log(getCookie("id"));
+
+    var gooddt=goodsData[goodsid-1];
+
+    var imgsrc="../image/"+gooddt.mycimgsrc;
+     $("#myc").attr("src",imgsrc);
+     $(".per").text(gooddt.per);
+     $(".weight").text(gooddt.weight);
+     $("#category").text(gooddt.category);
+     $("#price").text(gooddt.price);
+
+     $('#perchase').click(function(event) {
+         perchase(goodsid);
+     });
+});
+
+function perchase(goodsid){
+    location.href="order_commit.html?id="+goodsid+"&user_id="+user_id;
+}
+  </script>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators" >
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
