@@ -40,3 +40,9 @@ nav{
   .empty-box{
     margin:50px auto;
   }
+  .payed{
+    color: orange;
+  }
+  .unpayed{
+    color:red;
+  }

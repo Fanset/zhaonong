@@ -37,66 +37,22 @@
           var phone=$("#phone").val();
           var province=$("#province").val();
           var city=$("#city").val();
-          var address=$("#address").val();
+          var addetail=$("#address").val();
          if(name=="")alert("姓名不能为空！");
           else if(phone=="" )alert("手机不能为空！");
           else if($("#phone").val().length!==11)alert("手机号码不合法!"); 
           else if(province=="")alert("省份不能为空！");
           else if(city=="")alert("城市不能为空！");
-          else if(address=="")alert("详细地址不能为空！");
+          else if(addetail=="")alert("详细地址不能为空！");
           else {
-          var xmlhttp;
-           if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-          }else{
-             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-         }            
-          if(address_id==undefined){
-            var url="user_id="+user_id++"&name="+name+"&phone="+phone+"&province="+province+"&city="+city+"&address="+address; }//无address_id，后台动态分配address_id
-          else{
-            var url="user_id="+user_id+"&address_id="+address_id+"&name="+name+"&phone="+phone+"&province="+province+"&city="+city+"&address="+address;
-          }
-            xmlhttp.open("POST","address.php",true);
-            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange=function(){
-              var info=xmlhttp.responseText;
-              if(info=="true"){
-                alert("地址信息保存成功！") 
-                history.back();
-              }
-              else{alert(info);
-              }
-
-            }
-            xmlhttp.send(url);       
-           
+              .get("address.php",{name:name,phone:phone,province:province,city:city,addetail:addetail},function(data,status){
+                alert("保存成功！")
+              })
           }        
       }
-      function deleteAddress(address_id){
-        var xmlhttp;
-           if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-          }else{
-             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-         }
-          var url="user_id="+encodeURIComponent(user_id)+"&address_id="+encodeURIComponent(address_id);
-          xmlhttp.open("POST","address.php",true);
-          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-          xmlhttp.onreadystatechange = function() {
-             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-             var info = xmlhttp.responseText;
-             var info= eval("("+info+")");
-             if(info="true"){
-              alert("删除地址信息成功!");
-              history.back();
-             }
-              else{alert(info);
-              }
-          }
-        }
-        xmlhttp.send(url);
+      function back(){
+        history.back();
       }
-
 
 
       $(document).ready(function(){
@@ -104,29 +60,14 @@
           if(address_id==undefined){
 
           }
-          else{   //从编辑入口进入获得address_id则页面增加”删除“按钮
-          $("[class='btn-container text-center']").append("<a onclick=\"deleteAddress(address_id)\" class=\"btn btn-danger\" style=\"margin:0px 10px\" id=\"delete\">删除</a>");  
-          var xmlhttp;
-           if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-          }else{
-             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-         }
-          var url="user_id="+encodeURIComponent(user_id)+"&address_id="+encodeURIComponent(address_id);
-          xmlhttp.open("POST","address.php",true);
-          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-          xmlhttp.onreadystatechange = function() {
-             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-             var info = xmlhttp.responseText;
-             var text = eval("("+info+")");
-            $("#name").attr("value",unescape(text.name));
-           $("#phone").attr("value",unescape(text.phone));
-            $("#province").attr("value",unescape(text.province));
-            $("#city").attr("value",unescape(text.city));
-            $("#address").attr("value",unescape(text.address));
-          }
-        }
-        xmlhttp.send(url);
+          else{   
+          .get("address.php",{user_id:user_id,address_id:address_id},function(data){
+            $("#name").val(name);
+            $("#phone").val(phone);
+            $("#province").val(province);
+            $("#city").val(city);
+            $("#addetail").val(addetail);
+          })
       })
 
     </script>
@@ -165,7 +106,7 @@
       <div class="row">
         <div class="col-xs-4 text-right" style="padding:7px"><b>详细地址：</b></div>
         <div class="col-xs-8">
-          <input type="text" id="address" class="form-control" placeholder="详细地址"></div>
+          <input type="text" id="addetail" class="form-control" placeholder="详细地址"></div>
       </div>
     </div>
 </div>
@@ -176,7 +117,7 @@
     </div>
         <nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
         <div class="container text-right">
-            <a id="back" class="btn btn-danger navbar-btn" onclick="back()">返回订单</a>
+            <a id="back" class="btn btn-danger navbar-btn" onclick="back()">返回</a>
         </div>
     </nav>
   </body>
