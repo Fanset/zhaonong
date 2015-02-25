@@ -1,0 +1,34 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+body{ font:12px "宋体";}
+#aa{cursor:pointer;}
+#bb{display:none;color:#000;border:1px solid #000;background-color:#ccc;width:100px;height:100px;}
+#bb span{width:30px;height:30px;line-height:30px;text-align:center;background-color:#fff;display:block;float:left;margin:0 10px;cursor:pointer;}
+</style>
+<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#aa").click(function(){
+		$("#bb").css("display","block");
+		});
+	$("#ok").click(function(){
+		$("#aa").fadeOut(500);
+		$("#bb").fadeOut(500);
+		});	
+	$("#no").click(function(){
+		$("#bb").fadeOut(500);
+		});
+});
+</script>
+</head>
+<body>
+<div id="aa">请点击我</div>
+<div id="bb"><span id="ok">确定</span><span id="no">取消</span></div>
+</body>
+</html>
