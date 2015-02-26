@@ -10,9 +10,6 @@
     .btn-container{
       margin:40px;
     }
-    #save{
-      width:40%;
-    }
  img{
         margin:0px auto;
       }
@@ -46,3 +43,7 @@ nav{
   .unpayed{
     color:red;
   }
+  #back{
+    color:white;
+  }
+  #back:active{color:#d9534f;}

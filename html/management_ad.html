@@ -79,8 +79,8 @@
     <div class="list-group">
       <div class="list-group-item" id="1">
         <div class="row">
-          <div class="col-xs-2" onclick="delect(this)"><span class="glyphicon glyphicon-remove"></span></div>
-          <div class="col-xs-8 text-left" onclick="select(this)">罗夏君18922326092广东省广州市天河区沙和路164号401</div>
+          <div class="col-xs-2" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-remove"></span></div>
+          <div class="col-xs-8 text-left" onclick="select(this)">广东省广州市天河区沙和路164号401 罗夏君 18922326092</div>
         <div class="col-xs-2" onclick="edit(this)"><span class="glyphicon glyphicon-pencil arrow" ></span></div> 
       </div>
     </div>
@@ -89,15 +89,47 @@
       <p>暂无收货地址!</p>
     </div>-->
   </div>
-  
- <div class="btn-container text-center">
- <button class="btn btn-danger" onclick="addNew()" style="margin:0px 10px">新增地址</button>
-    </div>
+  <br>
+  <div class="container text-center">
+   <button class="btn btn-block btn-danger" onclick="addNew()">新增地址</button>
+   <button id="back" class="btn btn-block btn-danger" onclick="backCommit()">返回订单</button>
+ </div>
 
-    <nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
-        <div class="container text-right">
-            <a id="back" class="btn btn-danger navbar-btn" onclick="backCommit()">返回订单</a>
+ <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">确认删除？</h4>
+      </div>
+      <div class="modal-body">
+      广东省广州市天河区沙和路164号401<br>
+      收件人：罗夏君<br>
+      电话：18922326092
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-danger" onclick="delect()">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--  <nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
+        <div class="container">            
         </div>
-    </nav>
+    </nav>-->
+<script type="text/javascript">
+    $('#myModal').on('show.bs.modal', function (e) {  
+    $(this).find('.modal-dialog').css({  
+        'margin-top': function () {  
+            var modalHeight = $('#myModal').find('.modal-dialog').height(); 
+            console.log($(".modal-dialog").height());
+            return ($(window).height() / 2 - (modalHeight / 2));  
+        }  
+    });      
+});  
+
+    </script>
   </body>
 </html>

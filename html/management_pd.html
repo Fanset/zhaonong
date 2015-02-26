@@ -1,82 +1,154 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
-    <title>订单管理</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+  <title>订单管理</title>
 
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    
+  <!-- Bootstrap -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+      <![endif]-->
 
-  </head>
-  <body>
- 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../js/jquery-1.11.2.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/getUrl.js"></script>
-    <script src="../js/getcookie.js"></script>
+    </head>
+    <body>
 
 
-    <div class="list-group">
-      <div class="container-fluid list-group-item" id="1">
-        <div class="row" >
-          <div class="col-xs-8 text-left"></div>
-          <div class="col-xs-4 text-right payed">已支付</div> 
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="../js/jquery-1.11.2.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="../js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../js/getUrl.js"></script>
+      <script src="../js/getcookie.js"></script>
+
+      <div role="tabpanel">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">全部订单</a></li>
+          <li role="presentation"><a href="#payed" aria-controls="payed" role="tab" data-toggle="tab">已支付</a></li>
+          <li role="presentation"><a href="#unpayed" aria-controls="unpayed" role="tab" data-toggle="tab">未支付</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!--全部订单-->
+          <div role="tabpanel" class="tab-pane active" id="all">
+            <div class="list-group">
+              <div class="container-fluid list-group-item" id="1">
+                <div class="row" >
+                  <div class="col-xs-8 text-left"></div>
+                  <div class="col-xs-4 text-right payed">已支付</div> 
+                </div>
+                <hr style="margin:5px auto">
+                <div class="row">
+                  <div class="col-xs-8">
+                    <div class="media-left media-middle">    
+                      <img class="media-object" src="../image/16_80_mini.jpg" alt="16个80#经济礼盒"> 
+                    </div>
+                    <div class="media-body">
+                      16个80#经济礼盒装
+                    </div>
+                  </div>
+                  <div class="col-xs-4 text-right">
+                    <b>￥168</b><br>*1
+                  </div>
+                </div>
+                <hr style="margin:5px auto">
+                <div class="text-right">实付:<b>￥168.00</b></div>
+              </div>
+
+              <div class="container-fluid list-group-item" id="2">
+                <div class="row" >
+                  <div class="col-xs-8 text-left"></div>
+                  <div class="col-xs-4 text-right unpayed">未支付</div> 
+                </div>
+                <hr style="margin:5px auto">
+                <div class="row">
+                  <div class="col-xs-8">
+                    <div class="media-left media-middle">    
+                      <img class="media-object" src="../image/16_80_mini.jpg" alt="16个80#经济礼盒"> 
+                    </div>
+                    <div class="media-body">
+                      16个80#经济礼盒装
+                    </div>
+                  </div>
+                  <div class="col-xs-4 text-right">
+                    <b>￥168</b><br>*1
+                  </div>
+                </div>
+                <hr style="margin:5px auto">
+                <div class="text-right"><a href="#">前往支付</a> </div>
+              </div>
+            </div>
+
+
+          </div>
+          <!--已支付-->
+          <div role="tabpanel" class="tab-pane" id="payed">
+            <div class="list-group">
+              <div class="container-fluid list-group-item" id="1">
+                <div class="row" >
+                  <div class="col-xs-8 text-left"></div>
+                  <div class="col-xs-4 text-right payed">已支付</div> 
+                </div>
+                <hr style="margin:5px auto">
+                <div class="row">
+                  <div class="col-xs-8">
+                    <div class="media-left media-middle">    
+                      <img class="media-object" src="../image/16_80_mini.jpg" alt="16个80#经济礼盒"> 
+                    </div>
+                    <div class="media-body">
+                      16个80#经济礼盒装
+                    </div>
+                  </div>
+                  <div class="col-xs-4 text-right">
+                    <b>￥168</b><br>*1
+                  </div>
+                </div>
+                <hr style="margin:5px auto">
+                <div class="text-right">实付:<b>￥168.00</b></div>
+              </div>
+            </div>
+          </div>
+          <!--未支付-->
+          <div role="tabpanel" class="tab-pane" id="unpayed">
+            <div class="container-fluid list-group-item" id="2">
+              <div class="row" >
+                <div class="col-xs-8 text-left"></div>
+                <div class="col-xs-4 text-right unpayed">未支付</div> 
+              </div>
+              <hr style="margin:5px auto">
+              <div class="row">
+                <div class="col-xs-8">
+                  <div class="media-left media-middle">    
+                    <img class="media-object" src="../image/16_80_mini.jpg" alt="16个80#经济礼盒"> 
+                  </div>
+                  <div class="media-body">
+                    16个80#经济礼盒装
+                  </div>
+                </div>
+                <div class="col-xs-4 text-right">
+                  <b>￥168</b><br>*1
+                </div>
+              </div>
+              <hr style="margin:5px auto">
+              <div class="text-right">实付:<b>￥0.00</b></div>
+            </div>
+          </div>
         </div>
-        <hr style="margin:5px auto">
-        <div class="row">
-          <div class="col-xs-8">
-            <div class="media-left media-middle">    
-            <img class="media-object" src="../image/16_80_mini.jpg" alt="16个80#经济礼盒"> 
-            </div>
-            <div class="media-body">
-            16个80#经济礼盒装
-            </div>
-          </div>
-          <div class="col-xs-4 text-right">
-            <b>￥168</b><br>*1
-          </div>
       </div>
-      <hr style="margin:5px auto">
-      <div class="text-right">实付:<b>￥168.00</b></div>
-    </div>
 
-      <div class="container-fluid list-group-item" id="1">
-        <div class="row" >
-          <div class="col-xs-8 text-left"></div>
-          <div class="col-xs-4 text-right unpayed">未支付</div> 
-        </div>
-        <hr style="margin:5px auto">
-        <div class="row">
-          <div class="col-xs-8">
-            <div class="media-left media-middle">    
-            <img class="media-object" src="../image/16_80_mini.jpg" alt="16个80#经济礼盒"> 
-            </div>
-            <div class="media-body">
-            16个80#经济礼盒装
-            </div>
-          </div>
-          <div class="col-xs-4 text-right">
-            <b>￥168</b><br>*1
-          </div>
-      </div>
-      <hr style="margin:5px auto">
-      <div class="text-right">实付:<b>￥0.00</b></div>
     </div>
-   </div>
+    
 
     <!--订单列表样式-->
     <!--<div class="empty-box text-center">

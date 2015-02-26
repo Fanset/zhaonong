@@ -9,6 +9,23 @@
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
+    <style type="text/css">
+    .navbar-nav>li>a {
+         padding-top: 10px;
+         padding-bottom: 10px;
+      }
+    .navbar-brand {
+          height: 40px;
+          padding-top: 10px;
+      }
+    .navbar {
+     min-height: 40px;
+     }
+    .navbar-toggle {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    }
+    </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,6 +88,9 @@
       })
 
     </script>
+    <nav class="navbar" style="border:none;margin-bottom: 0px;background-color: #d9534f;">
+    <a id="back" class="navbar-brand" onclick="back()"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>返回</a>
+    </nav>
   <div class="list-group">
     <div class="list-group-item">
       <div class="row">
@@ -111,14 +131,14 @@
     </div>
 </div>
 
-     <div class="btn-container text-center">
-        <a onclick="saveAddress()" class="btn btn-success" style="margin:0px 10px" id="save">保存</a>
+     <div class="container text-center">
+        <button onclick="saveAddress()" class="btn btn-success btn-block" id="save">保存</button> 
         <!--<a onclick="deleteAddress(address_id)" class="btn btn-danger" style="margin:0px 10px" id="delete">删除</a>-->
     </div>
-        <nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
+    <!--<nav class="navbar navbar-default navbar-fixed-bottom" style="border:none">
         <div class="container text-right">
             <a id="back" class="btn btn-danger navbar-btn" onclick="back()">返回</a>
         </div>
-    </nav>
+    </nav>-->
   </body>
 </html>
