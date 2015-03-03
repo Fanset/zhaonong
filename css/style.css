@@ -45,5 +45,6 @@ nav{
   }
   #back{
     color:white;
+    float: left;
   }
   #back:active{color:#d9534f;}

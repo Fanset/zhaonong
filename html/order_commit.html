@@ -34,18 +34,13 @@
       var price;
       var user_id;
       var address_id;
+      var expresstime;
 
         $(document).ready(function(){
             goodsid=getUrlParam("id");
-            user_id=getCookie("user_id"); 
             address_id=getUrlParam("address_id");        
             var gooddt=goodsData[goodsid-1];
-            var management_ad=getCookie("management_ad");//判断是否从地址管理页面返回，从页面返回则从cookie中读取原有的货品数量信息
-            if(management_ad=="true"){
-                  var amount=getCookie("amount");
-                  $("#amount").attr("value",unescape(amount));
-                  var time=unescape(getCookie("time"));
-                  $("#time").text(time);}                
+                
             else{var amount=$("#amount").val();}     
 
             var imgsrc="../image/"+gooddt.mainimgsrc;           
@@ -70,30 +65,7 @@
 
             }
             else{                          //ajax显示已选择的地址
-             var xmlhttp;
-            if (window.XMLHttpRequest) {
-              xmlhttp = new XMLHttpRequest();
-           }else{
-             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-           }
-            var url="user_id="+encodeURIComponent(user_id)+"&address_id="+encodeURIComponent(address_id);
-            xmlhttp.open("POST","address.php",true);
-            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            xmlhttp.onreadystatechange = function() {
-             if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-             var info = xmlhttp.responseText;
-             var text = eval("("+info+")");
-             var name=text.name;
-             var phone=text.phone;
-             var province=text.province;
-             var city=text.city;
-             var address=text.address;
-             var address_str=province+city+address+"收件人："+name+phone;
-             $("#address").text(address_str);
-          }
-        }
-        xmlhttp.send(url);
-            }
+ }
 
         })
     </script>
@@ -218,13 +190,10 @@
             var total=price*goodsamount;
             $("#total").text(total);
             $("#tamount").text(goodsamount);
-            addCookie("amount",goodsamount);
            // location.href="order_commit.html?id="+goodsid+"&amount="+amount;
 
          }
         }
-
-  
 
   var expresstime;
     function hideContainer(){
